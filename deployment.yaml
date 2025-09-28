@@ -1,23 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: sampleaspnet-deployment
+  name: samplenetapp-deployment
   namespace: default
   labels:
-    app: sampleaspnet
+    app: samplenetapp
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: sampleaspnet
+      app: samplenetapp
   template:
     metadata:
       labels:
         app: sampleaspnet
     spec:
       containers:
-      - name: sampleaspnet
-        image: aksmfcr01.azurecr.io/sampleaspnet:latest
+      - name: samplenetapp
+        image: aksmfcr01.azurecr.io/samplenetapp:latest
         ports:
         - containerPort: 8080
           protocol: TCP
@@ -59,10 +59,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: sampleaspnet-service
+  name: samplenetapp-service
   namespace: default
   labels:
-    app: sampleaspnet
+    app: samplenetapp
 spec:
   type: LoadBalancer
   ports:
@@ -71,4 +71,4 @@ spec:
     protocol: TCP
     name: http
   selector:
-    app: sampleaspnet
+    app: samplenetapp
